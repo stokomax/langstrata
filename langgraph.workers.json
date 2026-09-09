@@ -1,0 +1,9 @@
+{
+  "python_version": "3.14",
+  "dependencies": ["."],
+  "graphs": {
+    "researcher": "./src/langstrata/workers/researcher.py:graph",
+    "coder":      "./src/langstrata/workers/coder.py:graph",
+    "analyst":    "./src/langstrata/workers/analyst.py:graph"
+  }
+}

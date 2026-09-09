@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# langstrata project-specific — per-server state dirs and local tool state
+.langgraph_api*
+.serena/
+

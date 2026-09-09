@@ -1,0 +1,10 @@
+{
+  "python_version": "3.14",
+  "dependencies": ["."],
+  "graphs": {
+    "supervisor": "./src/langstrata/supervisor/agent.py:create_supervisor_agent",
+    "researcher": "./src/langstrata/workers/researcher.py:graph",
+    "coder": "./src/langstrata/workers/coder.py:graph",
+    "analyst": "./src/langstrata/workers/analyst.py:graph"
+  }
+}

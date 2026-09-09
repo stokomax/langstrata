@@ -1,0 +1,37 @@
+[project]
+name = "langstrata"
+version = "0.1.0"
+description = "A scalable LangGraph blueprint: split-server architecture for supervisor + worker agents"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "deepagents>=0.5.0",
+    "langchain-community>=0.4.2",
+    "langgraph>=1.2.11",
+    "langgraph-cli[inmem]>=0.4.31",
+    "langgraph-sdk>=0.4.4",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+supervisor = []
+worker = []
+
+[dependency-groups]
+dev = ["ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.format]
+quote-style = "double"
