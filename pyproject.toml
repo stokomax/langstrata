@@ -1,15 +1,17 @@
 [project]
 name = "langstrata"
-version = "0.1.0"
+version = "0.2.0"
 description = "A scalable LangGraph blueprint: split-server architecture for supervisor + worker agents"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "deepagents>=0.5.0",
+    "deepagents>=0.7.0,<0.8",
     "langchain-community>=0.4.2",
+    "langchain[mcp]>=1.4.0",
     "langgraph>=1.2.11",
     "langgraph-cli[inmem]>=0.4.31",
     "langgraph-sdk>=0.4.4",
+    "langshark-bites[a2a-notifier]==1.0.0",
     "pydantic>=2.0",
     "pydantic-settings>=2.0",
     "rich>=13.0",
@@ -20,10 +22,28 @@ supervisor = []
 worker = []
 
 [dependency-groups]
-dev = ["ruff"]
+dev = [
+    "ruff",
+    "mypy>=1.20",
+    "pytest>=8.3.3",
+    "pytest-asyncio>=1.3.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.uv.sources]
+# Pull directly from the GitHub Release asset. uv resolves a fixed wheel
+# URL, so the pinned version above (==1.0.0) must match the version in
+# this URL. Bump both together when upgrading langshark-bites.
+langshark-bites = { url = "https://github.com/stokomax/langshark-bites/releases/download/v1.0.0/langshark_bites-1.0.0-py3-none-any.whl" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+langstrata = ["py.typed"]
 
 [build-system]
 requires = ["setuptools"]
@@ -35,3 +55,40 @@ target-version = "py314"
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "W", "I", "C4", "C90", "N", "UP", "B", "SIM", "RET", "ARG",
+    "PTH", "PL", "ANN", "D", "ERA", "RUF",
+]
+ignore = ["D100", "D104"]  # no docstrings required on modules/packages
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["D102", "D103", "D205", "D209", "D417", "E402", "ANN001", "PLC0415"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-statements = 50
+
+[tool.ruff.lint.isort]
+known-first-party = ["langstrata"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+strict = true
+mypy_path = "src"
+packages = ["langstrata"]
+# CI gate: typecheck the library package only (`uv run mypy`).
+# Scripts and tests stay runnable without full strict annotations.
+
+[[tool.mypy.overrides]]
+module = ["scripts.*", "tests.*"]
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ["main"]
+ignore_errors = true

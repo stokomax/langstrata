@@ -220,4 +220,9 @@ __marimo__/
 # langstrata project-specific — per-server state dirs and local tool state
 .langgraph_api*
 .serena/
+.kilo/
+memory-bank/
 
+
+# a2a demo signing keys (scripts/gen_a2a_keys.py)
+.a2a-keys/

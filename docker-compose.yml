@@ -23,6 +23,8 @@ services:
       retries: 10
 
   # ── Supervisor server ──────────────────────────────────────────
+  # A2A completion receiver is embedded via langgraph.json http.app
+  # (langstrata.a2a.webapp) — workers POST to this origin.
   supervisor:
     build:
       context: .
@@ -37,6 +39,11 @@ services:
       REDIS_URI: "redis://redis:6379/0"
       AGENT_SERVER_MODE: "http"
       AGENT_SERVER_WORKER_API_URL: "http://worker:8124"
+      A2A_COMPLETION_NOTIFIER_ENABLED: "true"
+      # Webhook origin = this service (bite appends /a2a/notifications).
+      A2A_RECEIVER_URL: http://supervisor:8123
+      A2A_SUPERVISOR_URL: http://supervisor:8123
+      A2A_REDIS_URL: redis://redis:6379/2
     depends_on:
       postgres:
         condition: service_healthy
@@ -56,6 +63,9 @@ services:
       PORT: "8124"
       DATABASE_URI: "postgres://langgraph:langgraph@postgres:5432/langgraph_workers?sslmode=disable"
       REDIS_URI: "redis://redis:6379/1"
+      A2A_COMPLETION_NOTIFIER_ENABLED: "true"
+      # Emit completions to the supervisor-embedded receiver.
+      A2A_RECEIVER_URL: http://supervisor:8123
     depends_on:
       postgres:
         condition: service_healthy
