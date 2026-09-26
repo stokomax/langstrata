@@ -9,7 +9,7 @@ ADD . /deps/langstrata
 # -- Installing all local dependencies --
 RUN for dep in /deps/*; do             echo "Installing $dep";             if [ -d "$dep" ]; then                 echo "Installing $dep";                 (cd "$dep" && PYTHONDONTWRITEBYTECODE=1 uv pip install --system --no-cache-dir -c /api/constraints.txt -e .);             fi;         done
 # -- End of local dependencies install --
-ENV LANGSERVE_GRAPHS='{"researcher": "/deps/langstrata/src/langstrata/workers/researcher.py:graph", "coder": "/deps/langstrata/src/langstrata/workers/coder.py:graph", "analyst": "/deps/langstrata/src/langstrata/workers/analyst.py:graph"}'
+ENV LANGSERVE_GRAPHS='{"researcher": "/deps/langstrata/src/langstrata/workers/researcher.py:create_researcher_agent", "coder": "/deps/langstrata/src/langstrata/workers/coder.py:create_coder_agent", "analyst": "/deps/langstrata/src/langstrata/workers/analyst.py:create_analyst_agent"}'
 
 
 
