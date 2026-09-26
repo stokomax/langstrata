@@ -31,12 +31,13 @@ def _show_demo_prompt_mode() -> None:
 
 
 def main() -> None:
+    """Print resolved settings and provider/demo-mode smoke checks."""
     settings = Settings()
-    print(f"Hello from langstrata!")
+    print("Hello from langstrata!")
     print(f"  mode={settings.mode}              # set AGENT_SERVER_MODE=http|asgi")
     print(f"  model={settings.model}            # set AGENT_SERVER_MODEL=provider:model")
     print(f"  worker_api_url={settings.worker_api_url}  # set AGENT_SERVER_WORKER_API_URL=<url>")
-    print(f"  env prefix: AGENT_SERVER_          # all config vars use this prefix")
+    print("  env prefix: AGENT_SERVER_          # all config vars use this prefix")
     _check_api_key(settings)
     _show_demo_prompt_mode()
 
