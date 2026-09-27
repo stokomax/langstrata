@@ -55,7 +55,7 @@ def build_emitter_signer() -> A2ASigner | None:
         private_key_pem=settings.private_key_pem,
         kid=settings.kid,
         issuer=settings.issuer or "https://langstrata-worker",
-        audience=settings.audience or os.environ.get("A2A_RECEIVER_URL", "http://localhost:8001"),
+        audience=settings.audience or os.environ.get("A2A_RECEIVER_URL", "http://localhost:2024"),
     )
 
 

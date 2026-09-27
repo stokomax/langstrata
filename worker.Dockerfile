@@ -1,4 +1,4 @@
-FROM langchain/langgraph-api:3.14
+FROM langchain/langgraph-api:0.15.1-py3.14-bookworm
 
 
 

@@ -46,7 +46,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    audience = os.environ.get("A2A_RECEIVER_URL", "http://localhost:8001")
+    audience = os.environ.get("A2A_RECEIVER_URL", "http://localhost:2024")
     key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
     pem = key.private_bytes(
         serialization.Encoding.PEM,
