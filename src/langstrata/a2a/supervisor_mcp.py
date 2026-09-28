@@ -28,8 +28,6 @@ are hosted by a *separate* MCP bridge process
 streamable-http transport) that you run yourself and point the supervisor at
 via ``A2A_SUPERVISOR_MCP_URL``::
 
-    A2A_MCP_TRANSPORT=streamable-http \
-        uv run python -m langshark_bites.a2a_completion_notifier.mcp_server
     export A2A_SUPERVISOR_MCP_URL=http://localhost:8001/mcp
 
 Without ``A2A_SUPERVISOR_MCP_URL`` set, ``discover_supervisor_mcp_tools``

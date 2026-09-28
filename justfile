@@ -18,7 +18,7 @@ set dotenv-load := true
 # back to the project default -- so the a2a loop works even without .env.
 # Default: receiver embedded on supervisor (http.app).  A2A_RECEIVER_URL is the
 # supervisor origin; the bite appends /a2a/notifications.  AUTO_SPAWN off.
-A2A_ENV := 'A2A_COMPLETION_NOTIFIER_ENABLED="${A2A_COMPLETION_NOTIFIER_ENABLED:-true}" A2A_VERIFY_MODE="${A2A_VERIFY_MODE:-dev}" A2A_CALLBACK_TOKEN_SECRET="${A2A_CALLBACK_TOKEN_SECRET:-change-me-callback-token-secret-0123456789}" A2A_RECEIVER_URL="${A2A_RECEIVER_URL:-http://localhost:2024}" A2A_SUPERVISOR_URL="${A2A_SUPERVISOR_URL:-http://localhost:2024}" A2A_RECEIVER_PORT="${A2A_RECEIVER_PORT:-8001}" A2A_RECEIVER_HOST="${A2A_RECEIVER_HOST:-0.0.0.0}" A2A_MCP_TRANSPORT="${A2A_MCP_TRANSPORT:-stdio}"'
+A2A_ENV := 'A2A_COMPLETION_NOTIFIER_ENABLED="${A2A_COMPLETION_NOTIFIER_ENABLED:-true}" A2A_VERIFY_MODE="${A2A_VERIFY_MODE:-dev}" A2A_CALLBACK_TOKEN_SECRET="${A2A_CALLBACK_TOKEN_SECRET:-change-me-callback-token-secret-0123456789}" A2A_RECEIVER_URL="${A2A_RECEIVER_URL:-http://localhost:2024}" A2A_SUPERVISOR_URL="${A2A_SUPERVISOR_URL:-http://localhost:2024}"'
 
 # ── Help ─────────────────────────────────────────────────────────
 # Bare `just` (no recipe) shows a curated quick-start.  `just list` (or

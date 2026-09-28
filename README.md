@@ -403,6 +403,11 @@ This is why `A2A_RECEIVER_URL` and `A2A_SUPERVISOR_URL` both point to the superv
 
 The webapp (`webapp.py`) returns an empty FastAPI app when A2A is disabled (so the supervisor boots without A2A in earlier labs), and returns the full receiver when enabled, wired to the supervisor's Store via `runtime.store`.
 
+> **Terminals 3** - a2a-demo
+>
+> ![a2a-demo](docs/screenshots/langstrata-a2a-demo-begin.png)
+> ![a2a-demo](docs/screenshots/langstrata-a2a-demo-end.png)
+
 
 ### Lab 4: Self-hosted dual langgraph servers deployed with Docker Compose.
 
@@ -885,7 +890,6 @@ Enable on **both** servers to activate push completion:
 | `A2A_CALLBACK_TOKEN_SECRET` | `change-me...` | Shared secret for callback token HMAC |
 | `A2A_RECEIVER_URL` | `http://localhost:2024` | Supervisor origin (bite appends `/a2a/notifications`) |
 | `A2A_SUPERVISOR_URL` | `http://localhost:2024` | Supervisor origin for StoreClient fallback |
-| `A2A_MCP_TRANSPORT` | `stdio` | MCP bridge transport: `stdio` or `streamable-http` |
 | `A2A_SUPERVISOR_MCP_URL` | (none) | External MCP bridge URL (e.g. `http://localhost:8001/mcp`); attaches the four diagnostic tools |
 | `A2A_REDIS_URL` | (none) | Redis for cross-replica JTI dedup + dead-letter queue |
 | `A2A_PRIVATE_KEY_FILE` | (none) | RSA private key for emitter signing (`verify`/`strict` modes) |
